@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: employeeserviceapp
+  labels:
+    app: employeeapp
+    release: "0"
+spec:
+  containers:
+  - name: employeecontainer
+    image:productapp:latest
+    ports:
+      - containerPort: 9090
+    imagePullPolicy: Never

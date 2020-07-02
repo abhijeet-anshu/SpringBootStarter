@@ -1,0 +1,44 @@
+
+package com.controllers;
+
+import java.math.BigDecimal;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.bean.ConversionValue;
+
+@RestController
+public class ConversionController {
+	@GetMapping("/currency-conversion/to/{to}/from/{from}/quantity/{quantity}")
+	public ConversionValue getValue(@PathVariable String to,
+									@PathVariable String from,
+									@PathVariable String quantity) {
+		ConversionValue value  = 
+				new ConversionValue(1L, "INR123", "USD22", BigDecimal.valueOf(65));
+		
+		value.setQuantity(BigDecimal.valueOf(Double.parseDouble(quantity)));
+		
+		return value;
+		
+	}
+	@GetMapping("/currency-conversion-template/to/{to}/from/{from}/quantity/{quantity}")
+	public ConversionValue  getValue_template(@PathVariable String to,
+											@PathVariable String from,
+											@PathVariable String quantity) {
+		
+		Map<String, String> uriVariable = new HashMap();
+		uriVariable.put("to", to);
+		uriVariable.put("from", from);
+		
+		RestTemplate restTemplate = new RestTemplate();
+		String host = "http://localhost:8000";
+		String uri = "/currency-exchange-DB/to/{to}/from/{from}";
+		restTemplate.getForEntity(host+uri, ConversionValue.class);
+		return null;
+	}
+	
+
+}

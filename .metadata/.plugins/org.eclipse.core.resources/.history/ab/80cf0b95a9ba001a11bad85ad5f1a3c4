@@ -1,0 +1,71 @@
+package com.controllers;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pojo.Employee;
+import com.repository.EmployeeRepository;
+
+public class EmplyeeController {
+
+	@Autowired
+	EmployeeRepository repo;
+	
+	@PostMapping("/employees")
+	public Employee saveEmployee(@RequestBody Employee employee) {
+		employee.setEmpName(employee.getEmpName().toUpperCase());
+		return repo.save(employee);
+	}
+
+	@PostMapping(path = "/employees-form", consumes = { MediaType.APPLICATION_FORM_URLENCODED_VALUE })
+	public Employee saveEmployeeForm(Employee employee) {
+		employee.setEmpName(employee.getEmpName().toUpperCase());
+		return employee;
+	}
+
+	@GetMapping("/employees-entity/{myid}")
+	public ResponseEntity<Employee> getEmployee_entity(@PathVariable("myid") int id) {
+		Employee employee = new Employee();
+		employee.setEmpId(id);
+
+		return new ResponseEntity<Employee>(employee, HttpStatus.NO_CONTENT);
+	}
+
+	@GetMapping("/employees-headers/{myid}")
+	public ResponseEntity<Employee> getEmployee_headers(@PathVariable("myid") int id) {
+		// Employee employee = new Employee();
+		// employee.setEmpId(id);
+
+		Optional<Employee> optional = repo.findById(id);
+		System.out.println(optional.get());
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("value1", "myvalue123");
+		headers.add("authorized", "YES");
+
+		return new ResponseEntity<Employee>(optional.get(), headers, HttpStatus.FOUND);
+	}
+	
+	
+	@GetMapping("/employees/{name}")
+	public ResponseEntity<List<Employee>> findAllEmployees(@PathVariable String name) {
+		List<Employee> employees = repo.findByEmpName(name);
+		return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
+	}
+	
+	@GetMapping("/employees/{address}")
+	public ResponseEntity<List<Employee>> findAllEmployeesByAddress(@PathVariable String address) {
+		List<Employee> employees = repo.findByEmpAddress(address);
+		return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
+	}
+	
+}

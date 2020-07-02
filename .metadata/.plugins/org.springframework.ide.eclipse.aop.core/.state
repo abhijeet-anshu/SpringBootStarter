@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="demo"/>
+<aop-project name="Spring_LimitsService"/>
+<aop-project name="SpringCloud_ExchangeService"/>
+<aop-project name="SpringRest_Config_Server"/>
+<aop-project name="SpringCloud_Eureka_Naming_Server"/>
+<aop-project name="RabbitMicroservice"/>
+<aop-project name="SpringCloud_HATEAOS_Actuator"/>
+<aop-project name="Spring_JPA"/>
+<aop-project name="SpringCloud_ConversionService"/>
+<aop-project name="RabbitMicroservice-Publisher"/>
+</aop-reference-model>

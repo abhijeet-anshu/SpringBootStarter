@@ -1,0 +1,9 @@
+package com.example.controllers;
+
+@RestController
+public class MyController {
+	@GetMapping("/message")
+	public String getMessage() {
+		return "Welcome to MicroService";
+	}
+}

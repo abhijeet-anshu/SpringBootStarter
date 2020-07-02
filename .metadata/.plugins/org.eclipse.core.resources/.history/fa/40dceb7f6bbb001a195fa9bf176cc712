@@ -1,0 +1,6 @@
+package com.proxy;
+
+@FeignClient
+public interface ConversionValueProxy {
+	
+}

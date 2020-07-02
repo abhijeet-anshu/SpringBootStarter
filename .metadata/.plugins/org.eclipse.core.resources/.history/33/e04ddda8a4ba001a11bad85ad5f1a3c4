@@ -1,0 +1,23 @@
+package com.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import com.pojo.Employee;
+import com.repository.EmployeeRepository;
+
+public class EmplyeeController {
+
+	@Autowired
+	EmployeeRepository repo;
+	
+	@GetMapping("/employees/{name}")
+	public ResponseEntity<List<Employee>> findAllEmployees(String name) {
+		List<Employee> employees = repo.findByEmpName(name);
+		return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
+	}
+	
+}

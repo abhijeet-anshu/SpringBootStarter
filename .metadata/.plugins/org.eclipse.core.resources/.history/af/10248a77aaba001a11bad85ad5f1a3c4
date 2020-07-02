@@ -1,0 +1,11 @@
+package com.example.demo;
+
+import java.util.Optional;
+
+public interface EmployeeRepository {
+	
+	public Optional<Employee> findById(int id);
+	
+	public int save(Employee e);
+
+}

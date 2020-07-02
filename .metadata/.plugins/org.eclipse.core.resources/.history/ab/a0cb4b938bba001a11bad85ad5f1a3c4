@@ -1,0 +1,59 @@
+package com.controllers;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.Employee;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+@RestController
+public class EmployeeControllers {
+	@GetMapping("/myEmployees")
+	public String getEmployee() {
+		return "emp";
+	}
+	
+	@GetMapping("/myEmployees/{id}")
+	public Employee getEmployee(@PathVariable int id) {
+		Employee e = new Employee();
+		e.setEmpId(id);
+		return e;
+	}
+	
+	@GetMapping("/myEmployees/id/{id}/name/{name}")
+	public Employee getEmployee(@PathVariable("id") int id,
+							  @PathVariable("name") String name) 
+	{
+		Employee i = new Employee();
+		i.setEmpId(id);
+		i.setEmpName(name);
+		return i;
+	}
+	
+	@PostMapping("/employees")
+	public String getEmployee(@RequestBody Employee employee) 
+	{
+		return employee.toString();
+	}
+	
+	@PostMapping(path = "/employees-form",
+			consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+	public String savedEmployeeForm(@RequestBody Employee employee) 
+	{
+		return employee.toString();
+	}
+	
+	
+	@GetMapping("/myEmployees-entity/{id}")
+	public ResponseEntity<Employee> getEmployee_entity(@PathVariable int id) {
+		Employee e = new Employee();
+		e.setEmpId(id);
+		return new ResponseEntity<Employee>(e, HttpStatus.CREATED) ;
+	}
+	
+}

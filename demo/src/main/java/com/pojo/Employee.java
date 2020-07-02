@@ -1,0 +1,58 @@
+package com.pojo;
+
+public class Employee {
+	private int empId;
+	public Employee(int empId, String empName, String empAddress, long salary) {
+		super();
+		this.empId = empId;
+		this.empName = empName;
+		this.empAddress = empAddress;
+		this.salary = salary;
+	}
+	private String empName, empAddress;
+	private long salary;
+	
+	
+	
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public String getEmpAddress() {
+		return empAddress;
+	}
+
+	public long getSalary() {
+		return salary;
+	}
+
+	public void setSalary(long salary) {
+		this.salary = salary;
+	}
+
+	public void setEmpAddress(String empAddress) {
+		this.empAddress = empAddress;
+	}
+
+	public int getEmpId() {
+		return empId;
+	}
+
+	public Employee() {
+		empName = "Default Name";
+		empAddress  = "Default Address";
+	}
+	
+	public void setEmpId(int id) {
+		this.empId = id;
+	}
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", empAddress=" + empAddress + ", salary=" + salary
+				+ "]";
+	}
+}

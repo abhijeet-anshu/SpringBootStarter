@@ -1,0 +1,23 @@
+package com.controllers;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.Employee;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+@RestController
+public class EmployeeControllers {
+	@GetMapping("/myEmployees")
+	public String getEmployee() {
+		return "emp";
+	}
+	
+	@GetMapping("/myEmployees/{id}")
+	public Employee getEmployee(@PathVariable int id) {
+		Employee e = new Employee();
+		e.setEmpId(id);
+		return e;
+	}
+	
+}

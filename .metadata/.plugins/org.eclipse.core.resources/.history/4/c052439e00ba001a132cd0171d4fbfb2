@@ -1,0 +1,16 @@
+package com.example.demo;
+
+public class Employee {
+	private int id;
+	private String empName, empAddress;
+	
+	public Employee() {
+		empName = "Default Name";
+		empAddress  = "Default Address";
+	}
+	
+	public void setEmpId(int id) {
+		this.id = id;
+	}
+	
+}

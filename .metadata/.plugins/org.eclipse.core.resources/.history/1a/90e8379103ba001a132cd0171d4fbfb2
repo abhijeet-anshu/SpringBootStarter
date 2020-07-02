@@ -1,0 +1,44 @@
+package com.controllers;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.Employee;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+@RestController
+public class EmployeeControllers {
+	@GetMapping("/myEmployees")
+	public String getEmployee() {
+		return "emp";
+	}
+	
+	@GetMapping("/myEmployees/{id}")
+	public String getEmployee(@PathVariable int id) {
+		Employee e = new Employee();
+		e.setEmpId(id);
+		return e.toString();
+	}
+	
+	@GetMapping("/myEmployees/id/{id}/name/{name}")
+	public Employee getEmployee(@PathVariable("id") int id,
+							  @PathVariable("name") String name) 
+	{
+		Employee i = new Employee();
+		i.setEmpId(id);
+		i.setEmpName(name);
+		return i;
+	}
+	
+	@PostMapping("/employees")
+	public String getEmployee(@RequestBody Employee employee) 
+	{
+		return employee.toString();
+	}
+	
+	
+	
+	
+}

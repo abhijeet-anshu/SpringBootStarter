@@ -1,0 +1,20 @@
+localhost:8080/actuator/health
+
+{
+    "status": "UP"
+}
+
+
+management.endpoints.enabled-by-default=false
+management.endpoint.info.enabled=true
+localhost:8080/actuator/health  :::error
+localhost:8080/actuator/info     works
+
+management.endpoints.web.exposure.include=*
+http://localhost:8080/actuator/metrics
+http://localhost:8080/actuator/threaddump
+http://localhost:8080/actuator/loggers
+http://localhost:8080/actuator/beans
+
+
+***********

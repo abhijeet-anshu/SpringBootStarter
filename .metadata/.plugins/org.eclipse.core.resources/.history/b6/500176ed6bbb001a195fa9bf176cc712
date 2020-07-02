@@ -1,0 +1,11 @@
+package com.proxy;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(value="currency-exchange-service",
+			url="http:localhost:8000")
+public interface ConversionValueProxy {
+	
+	
+	
+}

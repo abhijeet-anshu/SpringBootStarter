@@ -1,0 +1,27 @@
+
+package com.controllers;
+
+import java.math.BigDecimal;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bean.ConversionValue;
+
+@RestController
+public class ConversionController {
+	@GetMapping("/currency-conversion/to/{to}/from/{from}/quantity/{quantity}")
+	public ConversionValue getValue(@PathVariable String to,
+									@PathVariable String from,
+									@PathVariable String quantity) {
+		ConversionValue c  = 
+				new ConversionValue(1L, "INR123", "USD22", BigDecimal.valueOf(65));
+		
+		c.setQuantity(BigDecimal.valueOf(Double.parseDouble(quantity)));
+		
+		return null;
+		
+	}
+
+}
